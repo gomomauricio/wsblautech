@@ -13,7 +13,10 @@ spring:
   jpa:    show-sql: true
     hibernate:      ddl-auto: update
     properties:      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect                  
+        dialect: org.hibernate.dialect.MySQL5Dialect  data:    mongodb:      host: 127.0.0.1
+      port: 27017
+      database: usuario
+                  
     
   
  #Esto es un comentario
