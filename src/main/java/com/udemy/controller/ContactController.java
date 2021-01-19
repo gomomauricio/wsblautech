@@ -24,6 +24,8 @@ import com.udemy.model.ContactModel;
 import com.udemy.service.ContactService;
 import com.udemy.service.impl.UsuarioMServiceImpl;
 
+import net.thegreshams.firebase4j.mgm.UsersFirebase;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class ContactController.
@@ -114,7 +116,7 @@ public class ContactController
 		}
 		id_a++;
 	
-		if(contactModel.getId() == null || contactModel.getId() > 0) contactModel.setId(id_a);
+		if(contactModel.getId() == null || contactModel.getId() < 0) contactModel.setId(id_a);
 		UsuarioM usuariom = usuarioConvert.convertContactModel2UsuarioM(contactModel);
 		
 		LOG.info(">>> " + usuariom);
@@ -127,6 +129,15 @@ public class ContactController
 		{
 			model.addAttribute("result",0);
 		}
+		
+						 try
+						 {
+							 LOG.info("______AGREGANDO A FIREBASE ");
+							 UsersFirebase.addUsuario( usuarioConvert.convertUsuarioM2firebaseUserM(usuariom));
+						 }
+						 catch (Exception e) {
+							e.printStackTrace();
+						}
 		
 		
 		return "redirect:/contacts/showcontacts";
@@ -174,6 +185,14 @@ public class ContactController
 //		contactService.removeContac(id);
 		UsuarioM user = usuarioMServiceImpl.consultarPorId(id); 
 	    usuarioMServiceImpl.borrar(user);
+				    try
+					 {
+						 LOG.info("______MODIFICANDO A FIREBASE ");
+						 UsersFirebase.deleteUsuario( usuarioConvert.convertUsuarioM2firebaseUserM(user));
+					 }
+					 catch (Exception e) {
+						e.printStackTrace();
+					}
  
 		return showContacts();
 	}
