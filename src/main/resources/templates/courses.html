@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" >
+<title>Courses</title>
+</head>
+<body>
+
+		<h1>Courses</h1>
+		
+		
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="course: ${courses}">
+					<th> <span th:text=${course.id}></span> </th>
+					<th> <span th:text=${course.name}></span> </th>
+					<th> <span th:text=${course.descripcion}></span> </th>
+					<th> <span th:text=${course.price}></span> </th>
+				</tr>
+			</tbody>		
+		</table>
+		
+		<hr>
+		<br>
+		
+		<form action="#" th:action="@{/courses/addcourse}" th:object="${course}" method="post" >
+			<p>Name: <input  type="text" th:field="*{name}" value="Mauricio"/> </p>
+			<p>Descripcion: <input  type="text" th:field="*{descripcion}" value="Programador"/> </p>
+			<p>Precio: <input  type="number" th:field="*{price}" value="52"/> </p>
+			
+			<p> <input type="submit" value="Enviar" /></p>
+		
+		</form>
+		
+		
+		
+		
+		
+		
+
+</body>
+</html>

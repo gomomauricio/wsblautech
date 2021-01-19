@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Result</title>
+</head>
+<body>
+ <h1>PERSON</h1>
+	<h2>NAME: <span th:text="${person.name}"> </span> -
+	     AGE: <span th:text="${person.age}"> </span></h2>
+	
+	<hr>
+	<br>
+	
+	<table border="1">
+		<thead>
+		    <tr>
+		    	<th>NAME</th>
+		    	<th>AGE</th>
+		    </tr>
+		</thead>
+		<tbody th:each="person : ${people}" >
+		    <tr>
+		    	<th th:text="${person.name}"></th>
+		    	<th th:text="${person.age}"></th>
+		    </tr>
+		</tbody>
+		
+	
+	</table>
+	
+</body>
+</html>

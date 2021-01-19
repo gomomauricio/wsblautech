@@ -1,0 +1,20 @@
+spring:
+  aop:    auto: true
+    proxy-target-class: false
+  messages:    always-use-message-format: false
+    basename: messages
+    cache-duration: -1
+  mvc:    dispatch-trace-request: false
+    dispatch-options-request: true
+  thymeleaf:    suffix: .html
+  datasource:    url: jdbc:mysql://localhost:3309/ninjabd
+    username: root
+    password: mgm2020
+  jpa:    show-sql: true
+    hibernate:      ddl-auto: update
+    properties:      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect                  
+    
+  
+ #Esto es un comentario
+ 

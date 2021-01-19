@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hi!</title>
+</head>
+<body>
+	<h1>Hi <span th:text="${person.name}">!!!</span></h1>
+	<h1>edad <span th:text="${person.age}">!!!</span></h1>
+	
+	<hr>
+	<br>
+	
+	<table border="1">
+		<thead>
+		    <tr>
+		    	<th>NAME</th>
+		    	<th>AGE</th>
+		    </tr>
+		</thead>
+		<tbody th:each="person : ${people}" >
+		    <tr>
+		    	<th th:text="${person.name}"></th>
+		    	<th th:text="${person.age}"></th>
+		    </tr>
+		</tbody>
+		
+	
+	</table>
+	
+</body>
+</html>
