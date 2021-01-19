@@ -92,5 +92,18 @@ public class UsuarioConvert {
 		return usuariom;
 	}
 	
+	public net.thegreshams.firebase4j.model.UsuarioM convertUsuarioM2firebaseUserM(UsuarioM usuariom)
+	{
+		net.thegreshams.firebase4j.model.UsuarioM firebaseUsuarioM = new net.thegreshams.firebase4j.model.UsuarioM();
+		
+		firebaseUsuarioM.setCity(usuariom.getCity());
+		firebaseUsuarioM.setFirstname(usuariom.getFirstname());
+		firebaseUsuarioM.setId(usuariom.getId());
+		firebaseUsuarioM.setLastname(usuariom.getLastname());
+		firebaseUsuarioM.setTelephone(usuariom.getTelephone());
+		
+		return firebaseUsuarioM;
+	}
+	
 	
 }

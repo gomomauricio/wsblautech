@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "bc7dc470-dc36-4e70-8660-68ec782cf841",
+		"name": "Blautech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar_Usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detalles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/detalle?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"detalle"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/editar?id=3&firstname=Modifica 9&lastname=apellido 31&telephone=346&city=mexico 71",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"editar"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						},
+						{
+							"key": "firstname",
+							"value": "Modifica 9"
+						},
+						{
+							"key": "lastname",
+							"value": "apellido 31"
+						},
+						{
+							"key": "telephone",
+							"value": "346"
+						},
+						{
+							"key": "city",
+							"value": "mexico 71"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/agregar?firstname=Andy&lastname=Gutierrez&telephone=5514141417&city=China&id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"agregar"
+					],
+					"query": [
+						{
+							"key": "firstname",
+							"value": "Andy"
+						},
+						{
+							"key": "lastname",
+							"value": "Gutierrez"
+						},
+						{
+							"key": "telephone",
+							"value": "5514141417"
+						},
+						{
+							"key": "city",
+							"value": "China"
+						},
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/eliminar?id=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"eliminar"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

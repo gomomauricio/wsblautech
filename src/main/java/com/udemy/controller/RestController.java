@@ -1,5 +1,6 @@
 package com.udemy.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -16,12 +17,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.udemy.component.UsuarioConvert;
 import com.udemy.constant.ViewConstant;
 import com.udemy.entity.Contact;
 import com.udemy.entity.UsuarioM;
 import com.udemy.model.ContactModel;
 import com.udemy.service.ContactService;
 import com.udemy.service.impl.UsuarioMServiceImpl;
+
+import net.thegreshams.firebase4j.mgm.UsersFirebase;
+ 
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/rest")
@@ -35,6 +42,10 @@ public class RestController {
  
 	@Autowired
 	UsuarioMServiceImpl usuarioMServiceImpl;  
+	
+	@Autowired
+	@Qualifier("usuarioConvert")
+	private UsuarioConvert usuarioConvert;
 	
 	@GetMapping("/checkrest")  
 	public ResponseEntity<String> checkRest(){
@@ -81,7 +92,16 @@ public class RestController {
 		try
 		{
 			 usuarioMServiceImpl.guardar(userM);
-		}
+			 
+			 try
+			 {
+				 LOG.info("______AGREGANDO A FIREBASE ");
+				 UsersFirebase.addUsuario( usuarioConvert.convertUsuarioM2firebaseUserM(userM));
+			 }
+			 catch (Exception e) {
+				e.printStackTrace();
+			}
+		}			 
 		catch (Exception e)
 		{
 			 res = "Error al agregar registro " + e.getMessage();
@@ -103,9 +123,19 @@ public class RestController {
 		
 		try
 		{
-			if(user != null)  usuarioMServiceImpl.actualizar(userM);
+			if(user != null)
+			{
+				usuarioMServiceImpl.actualizar(userM);
+						try
+						 {
+							 LOG.info("______MODIFICANDO A FIREBASE ");
+							 UsersFirebase.addUsuario( usuarioConvert.convertUsuarioM2firebaseUserM(userM));
+						 }
+						 catch (Exception e) {
+							e.printStackTrace();
+						}
+			}
 			else res = "id no valido";
-			
 		}
 		catch (Exception e)
 		{
@@ -126,7 +156,18 @@ public class RestController {
 		
 		try
 		{
-			if(user != null)  usuarioMServiceImpl.borrar(user);
+			if(user != null) 
+			{
+				usuarioMServiceImpl.borrar(user);
+						try
+						 {
+							 LOG.info("______ELIMINANDO A FIREBASE ");
+							 UsersFirebase.deleteUsuario( usuarioConvert.convertUsuarioM2firebaseUserM(user));
+						 }
+						 catch (Exception e) {
+							e.printStackTrace();
+						} 
+			}
 			else res = "id no valido";
 			
 		}
